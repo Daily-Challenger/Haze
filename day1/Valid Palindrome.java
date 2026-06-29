@@ -1,21 +1,25 @@
-int[] solution(int[] numbers) {
-    // Step 1: 결과 배열 만들기
-    int[] result = new int[numbers.length - 2];
-    
-    // Step 2: 각 트리플 확인
-    for (int i = 0; i < numbers.length - 2; i++) {
-        int a = numbers[i];
-        int b = numbers[i + 1];
-        int c = numbers[i + 2];
-        
-        // 조건: a < b > c 또는 a > b < c
-        if ((a < b && b > c) || (a > b && b < c)) {
-            result[i] = 1;  // Zigzag!
-        } else {
-            result[i] = 0;  // Not zigzag
+class Solution {
+    public boolean isPalindrome(String s) {
+        int left = 0;
+        int right = s.length()-1;
+
+        while(left < right){
+            if(!Character.isLetterOrDigit(s.charAt(left))){
+                left++;
+            }
+            else if(!Character.isLetterOrDigit(s.charAt(right))){
+                right --;
+            }
+            else{
+                char leftChar = Character.toLowerCase(s.charAt(left));
+                char rightChar = Character.toLowerCase(s.charAt(right));
+                if(leftChar != rightChar){
+                    return false;
+                }
+                left++;
+                right--;
+            }
         }
+        return true;
     }
-    
-    // Step 3: 결과 반환
-    return result;
 }
